@@ -52,4 +52,11 @@ public class MovieServiceImpl implements MovieService {
         Movie existing = getMovieById(id);
         movieRepository.delete(existing);
     }
+
+    @Override
+    public List<Movie> searchMovies(String title, String genre, Double minRating) {
+        String normalizedTitle = (title == null || title.isBlank()) ? null : title.trim();
+        String normalizedGenre = (genre == null || genre.isBlank()) ? null : genre.trim();
+        return movieRepository.searchMovies(normalizedTitle, normalizedGenre, minRating);
+    }
 }

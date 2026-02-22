@@ -15,4 +15,6 @@ public interface MovieService {
 	Movie updateMovie(Long id, Movie movie);
 
 	void deleteMovie(Long id);
+
+	List<Movie> searchMovies(String title, String genre, Double minRating);
 }

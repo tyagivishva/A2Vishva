@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -27,6 +28,18 @@ public class MovieController {
     public String listMovies(Model model) {
         model.addAttribute("movies", movieService.getAllMovies());
         return "movies/list";
+    }
+
+    @GetMapping("/search")
+    public String searchMovies(@RequestParam(required = false) String title,
+                               @RequestParam(required = false) String genre,
+                               @RequestParam(required = false) Double minRating,
+                               Model model) {
+        model.addAttribute("movies", movieService.searchMovies(title, genre, minRating));
+        model.addAttribute("title", title);
+        model.addAttribute("genre", genre);
+        model.addAttribute("minRating", minRating);
+        return "movies/search";
     }
 
     @GetMapping("/new")
