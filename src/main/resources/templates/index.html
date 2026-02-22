@@ -1,0 +1,29 @@
+<!-- Student ID: 991811327 | Name: Vishva Tyagi -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <h1>Movie Database</h1>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/movies}">Movies</a>
+            <a th:href="@{/movies/new}">Add Movie</a>
+            <a th:href="@{/movies/search}">Search</a>
+        </nav>
+    </header>
+    <main>
+        <h2 th:text="${welcomeMessage}">Welcome message</h2>
+        <p><strong>Name:</strong> <span th:text="${studentName}">Student Name</span></p>
+        <p><strong>Student ID:</strong> <span th:text="${studentId}">Student ID</span></p>
+    </main>
+    <footer>
+        <p>&copy; 2026 Vishva Tyagi</p>
+    </footer>
+</body>
+</html>
