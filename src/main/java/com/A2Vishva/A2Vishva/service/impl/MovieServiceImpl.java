@@ -1,6 +1,7 @@
 // Student ID: 991811327 | Name: Vishva Tyagi
 package com.A2Vishva.A2Vishva.service.impl;
 
+import com.A2Vishva.A2Vishva.error.MovieNotFoundException;
 import com.A2Vishva.A2Vishva.model.Movie;
 import com.A2Vishva.A2Vishva.repository.MovieRepository;
 import com.A2Vishva.A2Vishva.service.MovieService;
@@ -25,7 +26,8 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie getMovieById(Long id) {
-        return movieRepository.findById(id).orElse(null);
+        return movieRepository.findById(id)
+                .orElseThrow(() -> new MovieNotFoundException("Movie with ID " + id + " was not found."));
     }
 
     @Override
@@ -35,10 +37,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie updateMovie(Long id, Movie movie) {
-        Movie existing = movieRepository.findById(id).orElse(null);
-        if (existing == null) {
-            return null;
-        }
+        Movie existing = getMovieById(id);
         existing.setTitle(movie.getTitle());
         existing.setGenre(movie.getGenre());
         existing.setReleaseYear(movie.getReleaseYear());
@@ -50,6 +49,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void deleteMovie(Long id) {
-        movieRepository.deleteById(id);
+        Movie existing = getMovieById(id);
+        movieRepository.delete(existing);
     }
 }
