@@ -1,0 +1,54 @@
+<!-- Student ID: 991811327 | Name: Vishva Tyagi -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <h1>Movie Database</h1>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/movies}">Movies</a>
+            <a th:href="@{/movies/new}">Add Movie</a>
+            <a th:href="@{/movies/search}">Search</a>
+        </nav>
+    </header>
+    <main>
+        <h2>All Movies</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Year</th>
+                    <th>Rating</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="movie : ${movies}">
+                    <td th:text="${movie.title}">Title</td>
+                    <td th:text="${movie.genre}">Genre</td>
+                    <td th:text="${movie.releaseYear}">Year</td>
+                    <td th:text="${movie.rating}">Rating</td>
+                    <td>
+                        <a th:href="@{/movies/{id}(id=${movie.id})}">View</a>
+                        <a th:href="@{/movies/{id}/edit(id=${movie.id})}">Edit</a>
+                        <a th:href="@{/movies/{id}/delete(id=${movie.id})}">Delete</a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(movies)}">
+                    <td colspan="5">No movies found.</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2026 Vishva Tyagi</p>
+    </footer>
+</body>
+</html>
