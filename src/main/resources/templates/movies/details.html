@@ -1,0 +1,36 @@
+<!-- Student ID: 991811327 | Name: Vishva Tyagi -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <h1>Movie Database</h1>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/movies}">Movies</a>
+            <a th:href="@{/movies/new}">Add Movie</a>
+            <a th:href="@{/movies/search}">Search</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Movie Details</h2>
+        <p><strong>Title:</strong> <span th:text="${movie.title}">Title</span></p>
+        <p><strong>Genre:</strong> <span th:text="${movie.genre}">Genre</span></p>
+        <p><strong>Release Year:</strong> <span th:text="${movie.releaseYear}">Year</span></p>
+        <p><strong>Rating:</strong> <span th:text="${movie.rating}">Rating</span></p>
+        <p><strong>Director:</strong> <span th:text="${movie.director}">Director</span></p>
+        <p><strong>Duration:</strong> <span th:text="${movie.durationMinutes}">Duration</span> minutes</p>
+        <p>
+            <a th:href="@{/movies/{id}/edit(id=${movie.id})}">Edit</a>
+            <a th:href="@{/movies/{id}/delete(id=${movie.id})}">Delete</a>
+            <a th:href="@{/movies}">Back</a>
+        </p>
+    </main>
+    
+</body>
+</html>

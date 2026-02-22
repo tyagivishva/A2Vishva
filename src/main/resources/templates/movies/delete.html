@@ -1,0 +1,30 @@
+<!-- Student ID: 991811327 | Name: Vishva Tyagi -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Movie</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <h1>Movie Database</h1>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/movies}">Movies</a>
+            <a th:href="@{/movies/new}">Add Movie</a>
+            <a th:href="@{/movies/search}">Search</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Confirm Delete</h2>
+        <p>Are you sure you want to delete <strong th:text="${movie.title}">this movie</strong>?</p>
+        <form th:action="@{/movies/{id}/delete(id=${movie.id})}" method="post">
+            <button type="submit">Yes, Delete</button>
+            <a th:href="@{/movies}">Cancel</a>
+        </form>
+    </main>
+    
+</body>
+</html>
